@@ -1,0 +1,25 @@
+a:hover {
+  text-decoration: none;
+}
+.home-main {
+  margin: 20px 0;
+}
+.main-title {
+  text-align: center;
+}
+.main-text {
+  text-align: center;
+}
+.main-div-button {
+  text-align: center;
+  padding: 40px 10px;
+  margin: 10px 0;
+  color: #000;
+  cursor: pointer;
+}
+.main-div-button.one {
+  background-color: #D9E0EA;
+}
+.main-div-button.two {
+  background-color: #FFECE4;
+}
