@@ -2,8 +2,9 @@ import React from "react";
 import "./Header.css";
 
 const Header = () => (
-  <header>
-    <div>This is the header</div>
+  <header className="home-header">
+    <p>Text Goes Here</p>
+    <button type="button" className="btn btn-outline-dark">Dark</button>
   </header>
 );
 
