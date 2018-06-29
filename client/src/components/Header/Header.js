@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "./Header.css";
 import { Col, Row } from "../Grid";
 
@@ -17,9 +18,9 @@ const Header = () => (
         <Col className="dead-space" size="2"></Col>
         <Col size="8">
           <div className="header-button-mission">
-          <a href="/misson-statement">
-            <button type="button" className="btn btn-outline-dark">Read our mission statement</button>
-          </a>
+            <Link to="/misson-statement">
+              <button type="button" className="btn btn-outline-dark">Read our mission statement</button>
+            </Link>
           </div>
         </Col>
         <Col className="dead-space" size="2"></Col>

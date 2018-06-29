@@ -1,14 +1,15 @@
 .home-header {
-  /* background: url("./assets/images/landingpink.jpg"); */
-  height: 200px;
+  background: url("../../assets/images/landingpink.jpg");
   width: 100%;
   background-size: cover;
-  padding: 20px 10px;
-  margin-bottom: 20px;
+  padding: 30px 10px;
 }
 .header-text{
   text-align: center;
+  margin-top: 15px;
+  margin-bottom: 10px;
 }
 .header-button-mission {
   text-align: center;
+  margin: 20px;
 }

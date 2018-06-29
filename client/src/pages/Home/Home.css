@@ -1,21 +1,35 @@
 a:hover {
   text-decoration: none;
 }
+
+
 .home-main {
-  margin: 20px 0;
+  margin: 30px 0;
 }
 .main-title {
   text-align: center;
+  margin: 25px;
 }
 .main-text {
   text-align: center;
 }
+
+
 .main-div-button {
   text-align: center;
-  padding: 40px 10px;
+  padding: 20px 10px;
   margin: 10px 0;
   color: #000;
   cursor: pointer;
+}
+.main-div-title {
+  margin: 20px;
+}
+.main-div-text {
+  margin: 15px;
+}
+.btn.btn-outline-dark.inside-div-button {
+  margin: 30px;
 }
 .main-div-button.one {
   background-color: #D9E0EA;
