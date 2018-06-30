@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import "./CreateEvent.css";
-import { Col, Row, Container } from "../../components/Grid";
+import { Container } from "../../components/Grid";
 import CreateForm from "../../components/CreateForm";
 
 class CreateEvent extends Component {
@@ -22,6 +22,7 @@ class CreateEvent extends Component {
   handelThatClick = event => {
     event.preventDefault();
     console.log("Clicked");
+    console.log(this.state.eventTitle);
     if(this.state.eventTitle && this.state.eventDate && this.state.eventLocation) {
       // Send this to the DB
     }
