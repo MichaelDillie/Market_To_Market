@@ -5,6 +5,6 @@ export default {
     return axios.get("/api/events");
   },
   saveEvent: function(eventData) {
-    return axios.post("/api/books", eventData);
+    return axios.post("/api/events", eventData);
   }
 }

@@ -4,7 +4,7 @@ import Nav from "./components/Nav";
 
 // PAGES
 import Home from "./pages/Home";
-// import AllEvents from "./pages/AllEvents";
+import AllEvents from "./pages/AllEvents";
 import CreateEvent from "./pages/CreateEvent";
 // import LogIn from "./pages/LogIn";
 // import SignUp from "./pages/SignUp";
@@ -17,6 +17,7 @@ const App = () => (
       <Switch>
         <Route exact path="/" component={Home} />
         <Route exact path="/create-event" component={CreateEvent} />
+        <Route exact path="/all-events" component={AllEvents} />
       </Switch>
     </div>
   </Router>
