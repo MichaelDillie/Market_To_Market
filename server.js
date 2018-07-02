@@ -20,8 +20,9 @@ if (process.env.NODE_ENV === "production") {
 // Add routes, both API and view
 // app.use(routes);
 
+
+
 app.get("/api/events", (req, res) => {
-  // res.send("Grab the fucking events.... IDK how this was working when I closed my laptop and then broken when I restart the server....")
   Event.find({}).sort({createdAt: -1}).then(results => res.json(results));
 });
 
@@ -32,6 +33,9 @@ app.post("/api/events", (req, res) => {
     res.json(dbEvent);
   })
 })
+
+
+
 
 // Connect to the Mongo DB
 mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/marketToMarket");
