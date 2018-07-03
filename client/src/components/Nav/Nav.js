@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
 import "./Nav.css"
+import Auth from "../../auth/Auth.js";
 
+const auth = new Auth();
 class Nav extends Component {
-
   render() {
+    const { isAuthenticated } = auth;
     return(
       <nav className="navbar navbar-expand-lg">
         <a className="navbar-brand" >Navbar</a>
@@ -16,6 +18,22 @@ class Nav extends Component {
               <a className="nav-link" >All Events <span className="sr-only">(current)</span></a>
             </li>
           </ul>
+        </div>
+        <div>
+          {
+            isAuthenticated() ? 
+              (
+                <div>
+                  <button onClick={() => auth.logout()}>Log Out</button>
+                </div>
+              )
+            :
+              (
+                <div>
+                  <button onClick={() => auth.login()}>Login</button>
+                </div>
+              )
+          }
         </div>
       </nav>
     );

@@ -15,7 +15,7 @@ class AllEvents extends Component {
   loadEvents = () => {
     API.getEvents()
       .then( res => 
-        {console.log(res.data)}
+        this.setState({events: res.data})
       )
   }
 
@@ -23,7 +23,17 @@ class AllEvents extends Component {
   render() {
     return(
       <div>
-        <div>Hello World</div>
+        <h1>Hello World</h1>
+        {
+          this.state.events.map( singleEvent => (
+            <div key="singleEvent._id">
+              <p>{singleEvent.eventName}</p>
+              <p>{singleEvent.date}</p>
+              <p>{singleEvent.location}</p>
+              <p>{singleEvent.description}</p>
+            </div>
+          ))
+        }
       </div>
     )
   }
