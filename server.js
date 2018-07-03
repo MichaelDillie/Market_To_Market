@@ -1,11 +1,7 @@
 const express = require("express");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
-// const routes = require("./routes");
-
-// ********** TESTING **********
-const Event = require("./models/event");
-// *****************************
+const routes = require("./routes");
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -18,23 +14,7 @@ if (process.env.NODE_ENV === "production") {
   app.use(express.static("client/build"));
 }
 // Add routes, both API and view
-// app.use(routes);
-
-
-
-app.get("/api/events", (req, res) => {
-  Event.find({}).sort({createdAt: -1}).then(results => res.json(results));
-});
-
-app.post("/api/events", (req, res) => {
-  console.log(req.body);
-
-  Event.create(req.body).then(dbEvent => {
-    res.json(dbEvent);
-  })
-})
-
-
+app.use(routes);
 
 
 // Connect to the Mongo DB
