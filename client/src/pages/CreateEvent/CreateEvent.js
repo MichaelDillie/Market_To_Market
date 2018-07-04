@@ -12,7 +12,20 @@ class CreateEvent extends Component {
     eventTitle: "",
     eventDate: "",
     eventLocation: "",
-    eventDescription: ""
+    eventDescription: "",
+    userId: ""
+  }
+
+  componentWillMount() {
+    this.setState({ profile: {} });
+    const { userProfile, getProfile } = this.props.auth;
+    if (!userProfile) {
+      getProfile((err, profile) => {
+        this.setState({ profile });
+      });
+    } else {
+      this.setState({ profile: userProfile });
+    }
   }
 
   handelInputChange = event => {
@@ -25,14 +38,14 @@ class CreateEvent extends Component {
   handelThatClick = event => {
     event.preventDefault();
     console.log("Clicked");
-    console.log(this.state.eventTitle);
     if(this.state.eventTitle && this.state.eventDate && this.state.eventLocation) {
       // Send this to the DB
       API.saveEvent({
         eventName: this.state.eventTitle,
         date: this.state.eventDate,
         location: this.state.eventLocation,
-        description: this.state.eventDescription
+        description: this.state.eventDescription,
+        userId: this.state.profile.sub
       })
         .then(res => {console.log("posting got to then")})
         .catch(err => console.log(err));

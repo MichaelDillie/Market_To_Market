@@ -11,14 +11,36 @@ export default class Auth {
     redirectUri: origin + '/callback',
     audience: 'https://codecity.auth0.com/userinfo',
     responseType: 'token id_token',
-    scope: 'openid'
+    scope: 'openid profile'
   });
+
+  userProfile;
 
   constructor() {
     this.login = this.login.bind(this);
     this.logout = this.logout.bind(this);
     this.handleAuthentication = this.handleAuthentication.bind(this);
     this.isAuthenticated = this.isAuthenticated.bind(this);
+    this.getProfile = this.getProfile.bind(this);
+    this.getAccessToken = this.getAccessToken.bind(this);
+  }
+
+  getAccessToken() {
+    const accessToken = localStorage.getItem('access_token');
+    if (!accessToken) {
+      throw new Error('No Access Token found');
+    }
+    return accessToken;
+  }
+
+  getProfile(cb) {
+    let accessToken = this.getAccessToken();
+    this.auth0.client.userInfo(accessToken, (err, profile) => {
+      if (profile) {
+        this.userProfile = profile;
+      }
+      cb(err, profile);
+    });
   }
 
   handleAuthentication() {
