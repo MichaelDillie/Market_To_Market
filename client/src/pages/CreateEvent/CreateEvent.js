@@ -3,7 +3,7 @@ import "./CreateEvent.css";
 import API from "../../utils/API";
 import { Container } from "../../components/Grid";
 import CreateForm from "../../components/CreateForm";
-import Auth from '../../auth/Auth';
+// import Auth from '../../auth/Auth';
 
 
 class CreateEvent extends Component {
