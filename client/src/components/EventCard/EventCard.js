@@ -1,18 +1,39 @@
 import React from "react";
-// import { Col, Row} from "../../components/Grid";
+import { Col, Row} from "../../components/Grid";
 
 const EventCard = props => {
 
-
-
   return (
-    <div>
-      <h1>TESTING</h1>
-      <button onClick={props.userMatch}>TESTING BUTTON</button>
-      {
-        props.userMatch() === false ? console.log("False") : console.log("Ture")
-      }
-    </div>
+    <Row>
+      <Col size="12">
+        <Row>
+          <Col size="6">
+            <Row>{props.title}</Row>
+            <Row>{props.location}</Row>
+          </Col>
+          <Col size="6">
+            <Row>{props.date}</Row>
+            <Row>TIME</Row>
+          </Col>
+        </Row>
+        <Row>
+          <Col size="12">{props.description}</Col>
+        </Row>
+        <Row>
+          {
+            props.userId === props.currentUser ? 
+              <Row>
+                <button>EDIT</button>
+                <button>DELETE</button>
+              </Row>
+              : 
+              <Row>
+                <button>SPONSOR</button>
+              </Row>
+          }
+        </Row>
+      </Col>
+    </Row>
   )
 };
 
