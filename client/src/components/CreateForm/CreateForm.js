@@ -5,7 +5,7 @@ import { Row, Col } from "../../components/Grid";
 
 const CreateForm = props => (
   <div id="create-form-wrapper">
-    <Row>
+    <div className="row testing">
       <Col size="12">
         <label for="eventTitle">Event Title</label>
         <div className="field-body">
@@ -22,9 +22,9 @@ const CreateForm = props => (
           </div>
         </div>
       </Col>
-    </Row>
+    </div>
 
-    <Row>
+    <div className="row testing">
       <Col size="6">
         <label for="eventDate">Date of the Event</label>
           <div className="field-body">
@@ -58,9 +58,9 @@ const CreateForm = props => (
           </div>
         </div>
       </Col>
-    </Row>
+    </div>
 
-    <Row>
+    <div className="row testing">
       <Col size="6">
         <label for="eventStreet">Street</label>
         <div className="field-body">
@@ -94,10 +94,10 @@ const CreateForm = props => (
           </div>
         </div>
       </Col>
-    </Row>
+    </div>
 
-    <Row>
-    <Col size="6">
+    <div className="row testing">
+      <Col size="6">
         <label for="eventCity">City</label>
         <div className="field-body">
           <div className="field">
@@ -184,9 +184,9 @@ const CreateForm = props => (
           </div>
         </div>
       </Col>
-    </Row>
+    </div>
 
-    <Row>
+    <div className="row testing">
       <Col size="12">
         <label for="eventDetails">Event Details</label>
         <div className="field-body">
@@ -200,13 +200,13 @@ const CreateForm = props => (
           <p className="help is-danger" style={{display: "none"}} id="eventDetailsHelp">This field is required</p>
         </div>
       </Col>
-    </Row>
+    </div>
 
-    <Row>
+    <div className="row testing">
       <Col size="1" className="control">
         <button className="button is-link" onClick={props.handelThatClick}>Submit</button>
       </Col>
-    </Row>
+    </div>
 
   </div>
 )

@@ -6,7 +6,7 @@ const EventCard = props => {
 
   return (
     <Row>
-      <Col size="8">
+      <Col size="8 eventWrapper">
         <Row>
           <Col size="6 titleLocation">
             <Row>
