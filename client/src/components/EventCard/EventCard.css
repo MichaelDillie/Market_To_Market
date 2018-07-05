@@ -4,18 +4,20 @@ button {
   margin-bottom: 10px;
 }
 
-.col-eventWrapper {
-  background: pink;
+.event-card-wrapper {
+  margin: 25px;
 }
 
-.col-titleLocation{
-  padding: 0px;
+.col-eventWrapper {
+  background: pink;
+  padding: 15px 30px;
 }
-.col-title {
-  padding: 0px;
+
+.description-row {
+  margin: 20px 0px;
 }
-.col-location {
-  padding: 0px;
+.col-description {
+  padding: 0;
 }
 
 .date {

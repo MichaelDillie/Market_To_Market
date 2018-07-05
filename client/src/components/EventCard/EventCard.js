@@ -5,7 +5,7 @@ import { Col, Row} from "../../components/Grid";
 const EventCard = props => {
 
   return (
-    <Row>
+    <div className="row event-card-wrapper">
       <Col size="8 eventWrapper">
         <Row>
           <Col size="6 titleLocation">
@@ -20,6 +20,7 @@ const EventCard = props => {
               </Col>
             </Row>
           </Col>
+
           <Col size="6">
             <Row>
               <Col size="12">
@@ -33,12 +34,14 @@ const EventCard = props => {
             </Row>
           </Col>
         </Row>
-        <Row>
-          <Col size="12">
+
+        <div className="row description-row">
+          <Col size="12 description">
             <div className="description">{props.description}</div>
           </Col>
-        </Row>
+        </div>
         <Row>
+
           {
             props.userId === props.currentUser ? 
               <Col size="12">
@@ -53,7 +56,7 @@ const EventCard = props => {
         </Row>
       </Col>
       <Col size="4"></Col>
-    </Row>
+    </div>
   )
 };
 
