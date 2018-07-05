@@ -53,6 +53,7 @@ class AllEvents extends Component {
                 title={event.eventName}
                 location={event.location}
                 date={event.date}
+                time={event.time}
                 description={event.description}
                 userId={event.userId}
                 currentUser={this.state.profile.sub}

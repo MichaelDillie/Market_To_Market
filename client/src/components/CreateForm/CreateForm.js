@@ -1,9 +1,10 @@
 import React from "react";
+import "./CreateForm.css"
 import { Row, Col } from "../../components/Grid";
 
 
 const CreateForm = props => (
-  <div>
+  <div id="create-form-wrapper">
     <Row>
       <Col size="12">
         <label for="eventTitle">Event Title</label>
@@ -59,15 +60,14 @@ const CreateForm = props => (
       </Col>
     </Row>
 
-    {/* EDITTING THIS */}
     <Row>
       <Col size="6">
-        <label for="street">Street</label>
+        <label for="eventStreet">Street</label>
         <div className="field-body">
           <div className="field">
             <div className="control has-icons-left">
 
-            <input className="input is-dark form-control" type="text" id="street" placeholder="1234 Hello Ln" required="" onChange={props.handelInputChange} name="street"/>
+            <input className="input is-dark form-control" type="text" id="street" placeholder="1234 Hello Ln" required="" onChange={props.handelInputChange} name="eventStreet"/>
 
             <span className="icon is-small is-left">
               <i className="fas fa-map-marker-alt"></i>
@@ -79,12 +79,12 @@ const CreateForm = props => (
       </Col>
 
       <Col size="6">
-        <label for="postal">Postal</label>
+        <label for="eventPostal">Postal</label>
         <div className="field-body">
           <div className="field">
             <div className="control has-icons-left">
 
-            <input className="input is-dark form-control" type="number" id="postal" placeholder="78704" required="" onChange={props.handelInputChange} name="postal"/>
+            <input className="input is-dark form-control" type="number" id="postal" placeholder="78704" required="" onChange={props.handelInputChange} name="eventPostal"/>
 
             <span className="icon is-small is-left">
               <i className="fas fa-map-marker-alt"></i>
@@ -98,12 +98,12 @@ const CreateForm = props => (
 
     <Row>
     <Col size="6">
-        <label for="city">City</label>
+        <label for="eventCity">City</label>
         <div className="field-body">
           <div className="field">
             <div className="control has-icons-left">
 
-            <input className="input is-dark form-control" type="number" id="city" placeholder="Austin" required="" onChange={props.handelInputChange} name="city"/>
+            <input className="input is-dark form-control" type="text" id="city" placeholder="Austin" required="" onChange={props.handelInputChange} name="eventCity"/>
 
             <span className="icon is-small is-left">
               <i className="fas fa-map-marker-alt"></i>
@@ -115,13 +115,13 @@ const CreateForm = props => (
       </Col>
 
       <Col size="6">
-        <label for="postal">Postal</label>
+        <label for="eventState">Postal</label>
         <div className="field-body">
           <div className="field">
             <div className="control has-icons-left">
 
             <div className="select">
-              <select>
+              <select required="" onChange={props.handelInputChange} name="eventState">
                 <option>TX</option>
                 <option>AL</option>
                 <option>AK</option>
@@ -173,7 +173,6 @@ const CreateForm = props => (
                 <option>WV</option>
                 <option>WI</option>
                 <option>WY</option>
-
               </select>
             </div>
 
@@ -186,8 +185,6 @@ const CreateForm = props => (
         </div>
       </Col>
     </Row>
-
-    {/* EDITTING THIS */}
 
     <Row>
       <Col size="12">

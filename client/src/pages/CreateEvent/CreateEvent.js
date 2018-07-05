@@ -11,8 +11,13 @@ class CreateEvent extends Component {
   state = {
     eventTitle: "",
     eventDate: "",
-    eventLocation: "",
+    eventTime: "",
+    eventStreet: "",
+    eventPostal: "",
+    eventCity: "",
+    eventState: "",
     eventDescription: "",
+    eventLocation: "",
     userId: ""
   }
 
@@ -33,6 +38,10 @@ class CreateEvent extends Component {
     this.setState({
       [name]: value
     });
+    this.setState({
+      eventLocation: this.state.eventStreet + ", " + this.state.eventCity + ", " + this.state.eventState + " " + this.state.eventPostal
+    });
+    console.log(this.state.eventState)
   }
 
   handelThatClick = event => {
@@ -43,6 +52,7 @@ class CreateEvent extends Component {
       API.saveEvent({
         eventName: this.state.eventTitle,
         date: this.state.eventDate,
+        time: this.state.eventTime,
         location: this.state.eventLocation,
         description: this.state.eventDescription,
         userId: this.state.profile.sub
@@ -51,7 +61,6 @@ class CreateEvent extends Component {
         .catch(err => console.log(err));
     }
   }
-
 
   render() {
     return(

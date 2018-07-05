@@ -1,0 +1,26 @@
+button {
+  margin-right: 10px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.col-8 {
+  background: pink;
+}
+
+.col-titleLocation{
+  padding: 0px;
+}
+.col-title {
+  padding: 0px;
+}
+.col-location {
+  padding: 0px;
+}
+
+.date {
+  text-align: right;
+}
+.time {
+  text-align: right;
+}
