@@ -3,6 +3,7 @@ import "./CreateEvent.css";
 import API from "../../utils/API";
 import { Container } from "../../components/Grid";
 import CreateForm from "../../components/CreateForm";
+import history from "../../history"; 
 // import Auth from '../../auth/Auth';
 
 
@@ -57,7 +58,7 @@ class CreateEvent extends Component {
         description: this.state.eventDescription,
         userId: this.state.profile.sub
       })
-        .then(res => {console.log("posting got to then")})
+        .then(res => {history.push('/all-events')})
         .catch(err => console.log(err));
     }
   }

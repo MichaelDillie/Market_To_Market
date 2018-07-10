@@ -1,6 +1,6 @@
 import React from "react";
 import "./CreateForm.css"
-import { Row, Col } from "../../components/Grid";
+import { Col } from "../../components/Grid";
 
 
 const CreateForm = props => (
@@ -204,7 +204,7 @@ const CreateForm = props => (
 
     <div className="row testing">
       <Col size="1" className="control">
-        <button className="button is-link" onClick={props.handelThatClick}>Submit</button>
+        <button className="button" onClick={props.handelThatClick}>Submit</button>
       </Col>
     </div>
 
