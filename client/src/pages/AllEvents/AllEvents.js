@@ -3,11 +3,13 @@ import "./AllEvents.css";
 import API from "../../utils/API";
 import { Container} from "../../components/Grid";
 import EventCard from "../../components/EventCard";
+import DeleteEvent from "../../components/DeleteEvent";
 
 class AllEvents extends Component {
 
   state = {
-    events: []
+    events: [],
+    deleteEventState: "none"
   }
 
   componentWillMount() {
@@ -56,27 +58,42 @@ class AllEvents extends Component {
   deleteClicked = (eventId) => {
     console.log("Delete Clicked");
     console.log(eventId);
+    this.setState({deleteEventState: "show"});
   }
 
+  // ********* TESTING *********
+  componentWillUpdate(nextProps, nextState) {
+
+  }
+  // ***************************
+
   render() {
+    console.log(this.state.deleteEventState);
     return(
       <Container>
           {
             this.state.events.map( event => (
-              < EventCard 
-                key={event._id}
-                eventId={event._id}
-                title={event.eventName}
-                location={event.location}
-                date={event.date}
-                time={event.time}
-                description={event.description}
-                userId={event.userId}
-                currentUser={this.state.profile.sub}
-                sponsorClick={this.sponsorClick}
-                editClicked={this.editClicked}
-                deleteClicked={this.deleteClicked}
-              />
+              <div key={"test-" + event._id}>
+                < EventCard 
+                  key={event._id}
+                  eventId={event._id}
+                  title={event.eventName}
+                  location={event.location}
+                  date={event.date}
+                  time={event.time}
+                  description={event.description}
+                  userId={event.userId}
+                  currentUser={this.state.profile.sub}
+                  sponsorClick={this.sponsorClick}
+                  editClicked={this.editClicked}
+                  deleteClicked={this.deleteClicked}
+                />
+                {/* ********* TESTING ********* */}
+                < DeleteEvent 
+                  test={this.state.deleteEventState}
+                />
+                {/* ********* TESTING ********* */}
+              </div>
             ))
           }
       </Container>
