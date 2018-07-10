@@ -45,13 +45,13 @@ const EventCard = props => {
           {
             props.userId === props.currentUser ? 
               <Col size="12">
-                <button>EDIT</button>
-                <button>DELETE</button>
+                <a className="button" onClick={() => props.editClicked(props.eventId)}>EDIT</a>
+                <a className="button" onClick={() => props.deleteClicked(props.eventId)}>DELETE</a>
               </Col>
               : 
-              <Row>
-                <button>SPONSOR</button>
-              </Row>
+              <Col size="12">
+                <a className="button" onClick={() => props.sponsorClick(props.eventId)}>SPONSOR</a>
+              </Col>
           }
         </Row>
       </Col>

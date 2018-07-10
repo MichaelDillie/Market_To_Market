@@ -1,3 +1,11 @@
 .navbar.navbar-expand-lg {
   background-image: url("../../assets/images/h1background.png");
 }
+
+.navbar-brand {
+  color: black;
+}
+
+.all-events-link {
+  color: black;
+}
