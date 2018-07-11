@@ -55,20 +55,14 @@ class AllEvents extends Component {
     console.log(eventId);
   }
 
-  deleteClicked = (eventId) => {
+  deleteClicked = (eventId, btnId) => {
     console.log("Delete Clicked");
+    console.log(btnId);
     console.log(eventId);
     this.setState({deleteEventState: "show"});
   }
 
-  // ********* TESTING *********
-  componentWillUpdate(nextProps, nextState) {
-
-  }
-  // ***************************
-
   render() {
-    console.log(this.state.deleteEventState);
     return(
       <Container>
           {
@@ -77,6 +71,7 @@ class AllEvents extends Component {
                 < EventCard 
                   key={event._id}
                   eventId={event._id}
+                  btnId={event._id}
                   title={event.eventName}
                   location={event.location}
                   date={event.date}
@@ -89,9 +84,9 @@ class AllEvents extends Component {
                   deleteClicked={this.deleteClicked}
                 />
                 {/* ********* TESTING ********* */}
-                < DeleteEvent 
-                  test={this.state.deleteEventState}
-                />
+                {
+                  this.state.deleteEventState === "none" ? <div style={{display: "none"}}>< DeleteEvent /></div> : <div>< DeleteEvent /></div>
+                }
                 {/* ********* TESTING ********* */}
               </div>
             ))

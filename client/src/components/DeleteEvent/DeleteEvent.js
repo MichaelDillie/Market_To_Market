@@ -1,8 +1,10 @@
 import React from "react";
 
 const DeleteEvent = props => (
-  <div style={{display: props.test}}>
-    <div>This will be the delete stuff!!!!</div>
+  <div>
+    <div>Are You Sure?</div>
+    <button>Yes</button>
+    <button>No</button>
   </div>
 )
 
