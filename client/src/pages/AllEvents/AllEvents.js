@@ -9,7 +9,8 @@ class AllEvents extends Component {
 
   state = {
     events: [],
-    deleteEventState: "none"
+    deleteEventState: "none",
+    eventClicked: ""
   }
 
   componentWillMount() {
@@ -59,40 +60,51 @@ class AllEvents extends Component {
     console.log("Delete Clicked");
     console.log(btnId);
     console.log(eventId);
+    this.setState({eventClicked: eventId});
     this.setState({deleteEventState: "show"});
   }
 
   render() {
-    return(
-      <Container>
-          {
-            this.state.events.map( event => (
-              <div key={"test-" + event._id}>
-                < EventCard 
-                  key={event._id}
-                  eventId={event._id}
-                  btnId={event._id}
-                  title={event.eventName}
-                  location={event.location}
-                  date={event.date}
-                  time={event.time}
-                  description={event.description}
-                  userId={event.userId}
-                  currentUser={this.state.profile.sub}
-                  sponsorClick={this.sponsorClick}
-                  editClicked={this.editClicked}
-                  deleteClicked={this.deleteClicked}
-                />
-                {/* ********* TESTING ********* */}
-                {
-                  this.state.deleteEventState === "none" ? <div style={{display: "none"}}>< DeleteEvent /></div> : <div>< DeleteEvent /></div>
-                }
-                {/* ********* TESTING ********* */}
-              </div>
-            ))
-          }
-      </Container>
-    )
+    if(this.state.profile === undefined) {
+      return (
+        <div>
+          <div>Need To Log In</div>
+        </div>
+      )
+    } else {
+      return(
+        <Container>
+            {
+              this.state.events.map( event => (
+                <div key={"test-" + event._id}>
+                  < EventCard 
+                    key={event._id}
+                    eventId={event._id}
+                    btnId={event._id}
+                    title={event.eventName}
+                    location={event.location}
+                    date={event.date}
+                    time={event.time}
+                    description={event.description}
+                    userId={event.userId}
+                    currentUser={this.state.profile.sub}
+                    sponsorClick={this.sponsorClick}
+                    editClicked={this.editClicked}
+                    deleteClicked={this.deleteClicked}
+                  />
+                  {/* ********* TESTING ********* */}
+                  {
+                    this.state.eventClicked === event._id 
+                    ? <div>< DeleteEvent /></div> 
+                    : console.log("Nope")
+                  }
+                  {/* ********* TESTING ********* */}
+                </div>
+              ))
+            }
+        </Container>
+      )
+    }
   }
 }
 
