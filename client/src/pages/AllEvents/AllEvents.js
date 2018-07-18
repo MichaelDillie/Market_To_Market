@@ -1,16 +1,22 @@
 import React, { Component } from "react";
 import "./AllEvents.css";
 import API from "../../utils/API";
-import { Container} from "../../components/Grid";
+import { Container } from "../../components/Grid";
 import EventCard from "../../components/EventCard";
 import DeleteEvent from "../../components/DeleteEvent";
+import SponsorForm from "../../components/SponsorForm";
+import EditFrom from "../../components/EditForm";
 
 class AllEvents extends Component {
 
   state = {
     events: [],
     deleteEventState: "none",
-    eventClicked: ""
+    deleteEventClicked: "",
+    sponsorEventState: "none",
+    sponsorEventClicked: "",
+    editEventState: "none",
+    editEventClicked: ""
   }
 
   componentWillMount() {
@@ -47,20 +53,17 @@ class AllEvents extends Component {
   }
 
   sponsorClick = (eventId) => {
-    console.log("Sponsor Clicked");
-    console.log(eventId);
+    this.setState({sponsorEventClicked: eventId});
+    this.setState({sponsorEventState: "show"});
   }
 
   editClicked = (eventId) => {
-    console.log("Edit Clicked");
-    console.log(eventId);
+    this.setState({editEventClicked: eventId});
+    this.setState({editEventState: "show"});
   }
 
-  deleteClicked = (eventId, btnId) => {
-    console.log("Delete Clicked");
-    console.log(btnId);
-    console.log(eventId);
-    this.setState({eventClicked: eventId});
+  deleteClicked = (eventId) => {
+    this.setState({deleteEventClicked: eventId});
     this.setState({deleteEventState: "show"});
   }
 
@@ -77,7 +80,7 @@ class AllEvents extends Component {
             {
               this.state.events.map( event => (
                 <div key={"test-" + event._id}>
-                  < EventCard 
+                  <EventCard 
                     key={event._id}
                     eventId={event._id}
                     btnId={event._id}
@@ -92,13 +95,38 @@ class AllEvents extends Component {
                     editClicked={this.editClicked}
                     deleteClicked={this.deleteClicked}
                   />
-                  {/* ********* TESTING ********* */}
+                  {/* THIS IS THE DELETE EVENT HANDLER */}
                   {
-                    this.state.eventClicked === event._id 
-                    ? <div>< DeleteEvent /></div> 
+                    this.state.deleteEventClicked === event._id 
+                    ? <div>
+                        <DeleteEvent 
+
+                        />
+                      </div> 
                     : console.log("Nope")
                   }
-                  {/* ********* TESTING ********* */}
+                  
+                  {/* THIS IS THE SPONSOR EVENT HANDLER */}
+                  {
+                    this.state.sponsorEventClicked === event._id
+                    ? <div>
+                        <SponsorForm
+
+                        />
+                      </div>
+                    : console.log("Not It")
+                  }
+                  
+                  {/* THIS IS THE EDIT EVENT HANDLER */}
+                  {
+                    this.state.editEventClicked === event._id
+                    ? <div>
+                        <EditFrom
+
+                        />
+                      </div>
+                    : console.log("Wrong One")
+                  }
                 </div>
               ))
             }

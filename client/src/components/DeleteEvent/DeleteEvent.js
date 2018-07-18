@@ -1,11 +1,12 @@
 import React from "react";
+import { Row } from "../../components/Grid";
 
 const DeleteEvent = props => (
-  <div>
+  <Row>
     <div>Are You Sure?</div>
     <button>Yes</button>
     <button>No</button>
-  </div>
+  </Row>
 )
 
 export default DeleteEvent;
