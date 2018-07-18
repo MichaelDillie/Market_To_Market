@@ -1,6 +1,6 @@
 import React from "react";
 import "./EventCard.css"
-import { Col, Row} from "../../components/Grid";
+import { Col, Row } from "../../components/Grid";
 
 const EventCard = props => {
 
@@ -56,7 +56,8 @@ const EventCard = props => {
           }
         </Row>
       </Col>
-      <Col size="4"></Col>
+      <Col size="4">
+      </Col>
     </div>
   )
 };

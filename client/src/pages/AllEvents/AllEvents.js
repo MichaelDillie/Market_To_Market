@@ -54,17 +54,27 @@ class AllEvents extends Component {
 
   sponsorClick = (eventId) => {
     this.setState({sponsorEventClicked: eventId});
-    this.setState({sponsorEventState: "show"});
+    this.setState({sponsorEventState: "block"});
   }
 
   editClicked = (eventId) => {
     this.setState({editEventClicked: eventId});
-    this.setState({editEventState: "show"});
+    this.setState({editEventState: "block"});
   }
 
   deleteClicked = (eventId) => {
     this.setState({deleteEventClicked: eventId});
-    this.setState({deleteEventState: "show"});
+    this.setState({deleteEventState: "block"});
+  }
+  deleteYes = (eventId) => {
+    console.log(eventId);
+    API.deleteEvent(eventId)
+      .then(res => this.loadEvents())
+      .catch(err => console.log(err));
+  }
+  deleteNo = (eventId) => {
+    console.log("WAIT DONT DO IT");
+    this.setState({deleteEventState: "none"});
   }
 
   render() {
@@ -97,13 +107,21 @@ class AllEvents extends Component {
                   />
                   {/* THIS IS THE DELETE EVENT HANDLER */}
                   {
-                    this.state.deleteEventClicked === event._id 
-                    ? <div>
-                        <DeleteEvent 
-
-                        />
-                      </div> 
-                    : console.log("Nope")
+                    this.state.deleteEventState === "block" ?
+                      this.state.deleteEventClicked === event._id ? 
+                        <div className="row delete-wrapper">
+                          <DeleteEvent 
+                            eventId={event._id}
+                            deleteYes={this.deleteYes}
+                            deleteNo={this.deleteNo}
+                          />
+                        </div> 
+                      : 
+                        console.log("")
+                    :
+                      <div style={{display: "none"}}> 
+                        <DeleteEvent />
+                      </div>
                   }
                   
                   {/* THIS IS THE SPONSOR EVENT HANDLER */}
@@ -114,7 +132,7 @@ class AllEvents extends Component {
 
                         />
                       </div>
-                    : console.log("Not It")
+                    : console.log("")
                   }
                   
                   {/* THIS IS THE EDIT EVENT HANDLER */}
@@ -125,7 +143,7 @@ class AllEvents extends Component {
 
                         />
                       </div>
-                    : console.log("Wrong One")
+                    : console.log("")
                   }
                 </div>
               ))
