@@ -10,6 +10,15 @@ import EditFrom from "../../components/EditForm";
 class AllEvents extends Component {
 
   state = {
+    eventTitle: "",
+    eventDate: "",
+    eventTime: "",
+    eventStreet: "",
+    eventPostal: "",
+    eventCity: "",
+    eventState: "",
+    eventDescription: "",
+    eventLocation: "",
     events: [],
     deleteEventState: "none",
     deleteEventClicked: "",
@@ -42,25 +51,48 @@ class AllEvents extends Component {
       )
   }
 
-  userMatch = () => {
-    this.state.events.map( test => {
-      if(test.userId === this.state.profile.sub) {
-        return true
-      } else {
-        return false
-      }
-    })
+  handelInputChange = event => {
+    const { name, value } = event.target;
+    this.setState({
+      [name]: value
+    });
+    this.setState({
+      eventLocation: this.state.eventStreet + ", " + this.state.eventCity + ", " + this.state.eventState + " " + this.state.eventPostal
+    });
+    console.log(this.state.eventState)
   }
+
+  // userMatch = () => {
+  //   this.state.events.map( test => {
+  //     if(test.userId === this.state.profile.sub) {
+  //       return true
+  //     } else {
+  //       return false
+  //     }
+  //   })
+  // }
 
   sponsorClick = (eventId) => {
     this.setState({sponsorEventClicked: eventId});
     this.setState({sponsorEventState: "block"});
   }
+// *******************************************************
+  // All Of The Edit Handlers
 
   editClicked = (eventId) => {
+    console.log(eventId)
     this.setState({editEventClicked: eventId});
     this.setState({editEventState: "block"});
   }
+  updateEvent = (eventId) => {
+    console.log(eventId);
+    
+  }
+  cancelEdit = (eventId) => {
+    this.setState({editEventState: "none"})
+  }
+// *******************************************************
+  // All Of The Delete Handlers
 
   deleteClicked = (eventId) => {
     this.setState({deleteEventClicked: eventId});
@@ -73,9 +105,9 @@ class AllEvents extends Component {
       .catch(err => console.log(err));
   }
   deleteNo = (eventId) => {
-    console.log("WAIT DONT DO IT");
     this.setState({deleteEventState: "none"});
   }
+  // *******************************************************
 
   render() {
     if(this.state.profile === undefined) {
@@ -105,6 +137,7 @@ class AllEvents extends Component {
                     editClicked={this.editClicked}
                     deleteClicked={this.deleteClicked}
                   />
+                  {/* --------------------------------------------------- */}
                   {/* THIS IS THE DELETE EVENT HANDLER */}
                   {
                     this.state.deleteEventState === "block" ?
@@ -123,7 +156,7 @@ class AllEvents extends Component {
                         <DeleteEvent />
                       </div>
                   }
-                  
+                  {/* --------------------------------------------------- */}
                   {/* THIS IS THE SPONSOR EVENT HANDLER */}
                   {
                     this.state.sponsorEventClicked === event._id
@@ -133,18 +166,32 @@ class AllEvents extends Component {
                         />
                       </div>
                     : console.log("")
-                  }
-                  
+                  } 
+                  {/* --------------------------------------------------- */}
                   {/* THIS IS THE EDIT EVENT HANDLER */}
                   {
-                    this.state.editEventClicked === event._id
-                    ? <div>
-                        <EditFrom
-
-                        />
+                    this.state.editEventState === "block" ?
+                      this.state.editEventClicked === event._id
+                      ? <div className="row edit-wrapper">
+                          <EditFrom
+                            eventId={event._id}
+                            title={event.eventName}
+                            location={event.location}
+                            date={event.date}
+                            time={event.time}
+                            description={event.description}
+                            cancelEdit={this.cancelEdit}
+                            updateEvent={this.updateEvent}
+                            handelInputChange={this.handelInputChange}
+                          />
+                        </div>
+                      : console.log("")
+                    :
+                      <div style={{display: "none"}}>
+                        <EditFrom />
                       </div>
-                    : console.log("")
                   }
+                  {/* --------------------------------------------------- */}
                 </div>
               ))
             }
