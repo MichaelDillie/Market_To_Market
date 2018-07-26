@@ -10,6 +10,17 @@ import EditFrom from "../../components/EditForm";
 class AllEvents extends Component {
 
   state = {
+    // OLD
+    oldEventTitle: "",
+    oldEventDate: "",
+    oldEventTime: "",
+    oldEventStreet: "",
+    oldEventPostal: "",
+    oldEventCity: "",
+    oldEventState: "",
+    oldEventDescription: "",
+    oldEventLocation: "",
+    // NEW
     eventTitle: "",
     eventDate: "",
     eventTime: "",
@@ -19,6 +30,7 @@ class AllEvents extends Component {
     eventState: "",
     eventDescription: "",
     eventLocation: "",
+    // OTHER
     events: [],
     deleteEventState: "none",
     deleteEventClicked: "",
@@ -59,7 +71,6 @@ class AllEvents extends Component {
     this.setState({
       eventLocation: this.state.eventStreet + ", " + this.state.eventCity + ", " + this.state.eventState + " " + this.state.eventPostal
     });
-    console.log(this.state.eventState)
   }
 
   // userMatch = () => {
@@ -80,13 +91,79 @@ class AllEvents extends Component {
   // All Of The Edit Handlers
 
   editClicked = (eventId) => {
-    console.log(eventId)
+    API.getEvent(eventId)
+      .then(res => this.setState({oldEventTitle: res.data.eventName}))
+    API.getEvent(eventId)
+      .then(res => this.setState({oldEventDate: res.data.date}))
+    API.getEvent(eventId)
+      .then(res => this.setState({oldEventTime: res.data.time}))
+    API.getEvent(eventId)
+      .then(res => this.setState({oldEventStreet: res.data.location.split(",")[0]}))
+    API.getEvent(eventId)
+      .then(res => this.setState({oldEventCity: res.data.location.split(",")[1].trim()}))
+    API.getEvent(eventId)
+      .then(res => this.setState({oldEventState: res.data.location.split(",")[2].trim().split(" ")[0].trim()}))
+    API.getEvent(eventId)
+      .then(res => this.setState({oldEventPostal: res.data.location.split(",")[2].trim().split(" ")[1].trim()}))
     this.setState({editEventClicked: eventId});
     this.setState({editEventState: "block"});
   }
   updateEvent = (eventId) => {
-    console.log(eventId);
+    // eventTitle
+    if(this.state.oldEventTitle === this.state.eventTitle || this.state.eventTitle === "") {
+      console.log("Empty or same, Use the old state");
+    } else {
+      console.log("Changed save the NEW");
+      API.saveEvent({
+        eventName: this.state.eventTitle
+      }).then(res => this.loadEvents());
+    }
     
+    // eventDate
+    if(this.state.oldEventDate === this.state.eventDate || this.state.eventDate === "") {
+      console.log("Empty or same, Use the old state");
+    } else {
+      console.log("Changed save the NEW");
+    }
+    // eventTime
+    if(this.state.oldEventTime === this.state.eventTime || this.state.eventTime === "") {
+      console.log("Empty or same, Use the old state");
+    } else {
+      console.log("Changed save the NEW");
+    }
+    // eventStreet
+    if(this.state.oldEventStreet === this.state.eventStreet || this.state.eventStreet === "") {
+      console.log("Empty or same, Use the old state");
+    } else {
+      console.log("Changed save the NEW");
+    }
+    // eventPostal
+    if(this.state.oldEventPostal === this.state.eventPostal || this.state.eventPostal === "") {
+      console.log("Empty or same, Use the old state");
+    } else {
+      console.log("Changed save the NEW");
+    }
+    // eventCity
+    if(this.state.oldEventCity === this.state.eventCity || this.state.eventCity === "") {
+      console.log("Empty or same, Use the old state");
+    } else {
+      console.log("Changed save the NEW");
+    }
+    // eventState
+    if(this.state.oldEventState === this.state.eventState || this.state.eventState === "") {
+      console.log("Empty or same, Use the old state");
+    } else {
+      console.log("Changed save the NEW");
+    }
+    // eventDescription
+    if(this.state.oldEventDescription === this.state.eventDescription || this.state.eventDescription === "") {
+      console.log("Empty or same, Use the old state");
+    } else {
+      console.log("Changed save the NEW");
+    }
+
+    // Hides the update input form
+    this.setState({editEventState: "none"})
   }
   cancelEdit = (eventId) => {
     this.setState({editEventState: "none"})
@@ -99,7 +176,6 @@ class AllEvents extends Component {
     this.setState({deleteEventState: "block"});
   }
   deleteYes = (eventId) => {
-    console.log(eventId);
     API.deleteEvent(eventId)
       .then(res => this.loadEvents())
       .catch(err => console.log(err));
@@ -176,7 +252,10 @@ class AllEvents extends Component {
                           <EditFrom
                             eventId={event._id}
                             title={event.eventName}
-                            location={event.location}
+                            oldEventStreet={this.state.oldEventStreet}
+                            oldEventCity={this.state.oldEventCity}
+                            oldEventPostal={this.state.oldEventPostal}
+                            oldEventState={this.state.oldEventState}
                             date={event.date}
                             time={event.time}
                             description={event.description}

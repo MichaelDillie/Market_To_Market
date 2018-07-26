@@ -8,6 +8,7 @@ router.route("/")
 router
   .route("/:id")
   .get(eventsController.findById)
+  .put(eventsController.update)
   .delete(eventsController.remove);
 
 module.exports = router;
